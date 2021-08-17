@@ -780,7 +780,7 @@ def choice_deposit():
             sql_query(update_query, "execute")
             sleep(5)
             clear()
-            log_the_task(extract_query_perform[0][0], user_bank_id, "User", extract_query_perform[0][3],
+            log_the_task(extract_query_perform[0][0], bank_id, "User", extract_query_perform[0][3],
                          extract_query[0][2], updated_bal, f"MONEY DEPOSITED SUCCESSFULLY")
             print(
                 f"Account balance of account having id {bank_id} successfully updated")
@@ -839,7 +839,7 @@ def choice_withdraw_processor():
                 print(
                     f"Earlier it was {extract_query[0][2]} , After withdrawing {with_money} you have {updated_bal} in your bank account.")
                 sleep(5)
-                log_the_task(extract_query_perform[0][0], user_bank_id, "User", extract_query_perform[0][3],
+                log_the_task(extract_query_perform[0][0], bank_id, "User", extract_query_perform[0][3],
                              extract_query[0][2], updated_bal, f"MONEY WITHDRAWN SUCCESSFULLY")
                 choices_main_interface_director()
         elif extract_query[0][2] < 5000 or str(extract_query[0][1]) != user_password:
@@ -911,8 +911,7 @@ def choice_transfer_processor():
             user_extracted_data[0][1]) - int(amount_to_transfer)
         user_get_updated_bal = int(
             user_get_extracted_data[0][0]) + int(amount_to_transfer)
-        if str(user_extracted_data[0][0]) == str(user_password) and user_extracted_data[0][
-            1] > 5000 and user_updated_bal > 2000:
+        if str(user_extracted_data[0][0]) == str(user_password) and user_extracted_data[0][1] > 5000 and user_updated_bal > 2000:
             print(
                 f"Transferring money to  account having id {user_get_bank_id} from your account having id {user_bank_id}")
             user_update_query = f"UPDATE ACCOUNT_DETAILS SET ACCOUNT_BALANCE='{user_updated_bal}' WHERE TABLE_ID={user_bank_id}"
@@ -1149,7 +1148,7 @@ def account_user_register_process(user_email):
         print("Remember this bank id it will be used in the bank account confirmation.")
         print("Redirecting to your user choices page.")
         sleep(5)
-        log_the_task(auth_selection_execute[0][0], user_bank_id, "User", user_email, user_start_bal, start_bal,
+        log_the_task(auth_selection_execute[0][0], user_bank_id, "User", user_email, user_start_bal, user_start_bal,
                      f"BANK ACCOUNT CREATED SUCCESSFULLY")
         choices_main_interface_director()
     except Exception as error:
@@ -1394,37 +1393,37 @@ def timewise_report():
                   "8": ["Registered Accounts Information", "registered "],
                   "9": ["Login Accounts Information", "Logged"], "10": ["Deleted Accounts Information", "Deleted"],
                   "11": ["All Logs"], "12": ["Specify Report"]}
-            set = to[str(perform)]
+            set_to = to[str(perform)]
 
             header = ["SR NO:", "BANK ID", "ACCOUNT ID", "EMAIL ID", "PREVIOUS BALANCE", "UPDATED BALANCE",
                       "TASK PERFORMED", "TIMESTAMP"]
-            if set[0] == "Daily Report":
+            if set_to[0] == "Daily Report":
                 clear()
-                caller(set[0])
-                query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set[1]}'"
+                caller(set_to[0])
+                query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set_to[1]}'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
-            elif set[0] in ["Monthly Report", "Yearly Report"]:
+            elif set_to[0] in ["Monthly Report", "Yearly Report"]:
                 clear()
-                caller(set[0])
-                query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set[1]}%'"
+                caller(set_to[0])
+                query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set_to[1]}%'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
-            elif set[0] in ["Money Deposit Report", "Money Withdraw Report", "Money Transfer Report",
-                            "Money Received Report", "Registered Accounts Information", "Login Accounts Information",
-                            "Deleted Accounts Information"]:
+            elif set_to[0] in ["Money Deposit Report", "Money Withdraw Report", "Money Transfer Report",
+                               "Money Received Report", "Registered Accounts Information", "Login Accounts Information",
+                               "Deleted Accounts Information"]:
                 clear()
-                caller(set[0])
-                query = f"SELECT * FROM LOGS WHERE TASK_PERFORMED LIKE '%{set[1]}%'"
+                caller(set_to[0])
+                query = f"SELECT * FROM LOGS WHERE TASK_PERFORMED LIKE '%{set_to[1]}%'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
-            elif set[0] == "All Logs":
+            elif set_to[0] == "All Logs":
                 clear()
-                caller(set[0])
+                caller(set_to[0])
                 query = f"SELECT * FROM LOGS"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
-            elif set[0] == "Specify Report":
+            elif set_to[0] == "Specify Report":
                 user_id = input("Which user you want to fetch specify it's User ID :")
                 bank_id = input("Which bank you want to fetch of the user id mentioned above specify it's Bank Id'")
                 taskPerformed = input(
