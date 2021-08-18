@@ -1558,7 +1558,7 @@ def timewise_report():
                 month--> /12/
                 year--> 2021/""")
                 timestamp = input(
-                    "Enter the timestamp [Press enter to use today's timestamp or to get all type 'all' ] :").casefold()
+                    "Enter the timestamp [Press enter to use today's timestamp or to get all type 'all' ] :").upper()
                 query = f"SELECT * FROM LOGS WHERE USER_BANK_ID={user_id} AND USER_ACCOUNT_ID={bank_id} AND TASK_PERFORMED='{taskPerformed}' AND TIMESTAMP LIKE '%{timestamp}%'"
                 if taskPerformed == "ALL":
                     query = f"SELECT * FROM LOGS WHERE USER_BANK_ID={user_id} AND USER_ACCOUNT_ID={bank_id} AND TIMESTAMP LIKE '%{timestamp}%'"
