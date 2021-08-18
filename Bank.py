@@ -45,7 +45,7 @@ def log_the_task(USER_BANK_ID, USER_ACCOUNT_ID, NAME, EMAIL, PREV_AMOUNT, NEW_BA
     sql_query(query_execute, "execute")
 
 
-def caller(y):
+def call_the_name(y):
     clear()
     a = "\t\t"
     for i in y:
@@ -67,7 +67,7 @@ def welcome():
     clear()
 
     def table_creation():
-        caller("TABLE CREATION PROCEDURE")
+        call_the_name("TABLE CREATION PROCEDURE")
         print("\t\tCreating database.. ")
         database_creation()
         sleep(2)
@@ -93,7 +93,7 @@ def welcome():
                         > LOGS""")
         sleep(8)
 
-    caller("WELCOME TO URMI BANKING ")
+    call_the_name("WELCOME TO URMI BANKING ")
 
     print("You will find a file named 'secrets.py' ")
     print(
@@ -116,7 +116,7 @@ def welcome():
 
 
 def sending_otp_to_user(user_email_id_to_send, Function, FUNCTION_TO_DO_IF_CORRECT=False):
-    caller("OTP VERIFICATION PROCEDURE")
+    call_the_name("OTP VERIFICATION PROCEDURE")
     send_otp = str(email_verification(user_email_id_to_send, "User"))
     enter_otp = input(f"Please enter otp sent to {user_email_id_to_send}  : ")
     while enter_otp != send_otp:
@@ -129,7 +129,7 @@ def sending_otp_to_user(user_email_id_to_send, Function, FUNCTION_TO_DO_IF_CORRE
                2. you want to change email""")
         your_choice = input("Choice [1-2] : ")
         if your_choice == "1":
-            caller("OTP VERIFICATION PROCEDURE")
+            call_the_name("OTP VERIFICATION PROCEDURE")
             send_otp = str(email_verification(user_email_id_to_send, "User"))
             enter_otp = input(
                 f"Please enter otp sent to {user_email_id_to_send} : ")
@@ -285,7 +285,7 @@ def interface_director():
 def user_main_interface():
     clear()
     try:
-        caller("user interface")
+        call_the_name("user interface")
         print(
             """
         1. Login
@@ -335,7 +335,7 @@ def user_main_interface_director():
 def user_login_protocol():
     clear()
     try:
-        caller("LOGIN PAGE")
+        call_the_name("LOGIN PAGE")
         user_email = input("Please type your registered email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
@@ -377,7 +377,7 @@ def user_login_protocol():
 
 def user_update_process_start_choices():
     clear()
-    caller("UPDATE CHOICES PAGE")
+    call_the_name("UPDATE CHOICES PAGE")
     try:
         print(
             """
@@ -423,7 +423,7 @@ def convertor_list_to_sql_string(changes_to_made):
 def user_update_process_start():
     clear()
     try:
-        caller("UPDATE PROCEDURE")
+        call_the_name("UPDATE PROCEDURE")
         change = []
         list_of_changes = user_update_process_start_choices()
         list_of_changes.append(" ")
@@ -500,7 +500,7 @@ def user_update_process_start():
 def user_update_process(user_email_id):
     clear()
     try:
-        caller("UPDATE AUTHENTICATION")
+        call_the_name("UPDATE AUTHENTICATION")
         user_password = int(input("Please type your password: "))
         user_auth_query = f"SELECT PASSWORD,NAME,ID FROM USERS WHERE EMAIL_ID='{user_email_id}'"
         user_auth_execute = sql_query(user_auth_query, "extract")
@@ -536,7 +536,7 @@ def user_update_process(user_email_id):
 def user_update_protocol():
     clear()
     try:
-        caller("UPDATE EMAIL AUTHENTICATION")
+        call_the_name("UPDATE EMAIL AUTHENTICATION")
         user_email = input("Please type your registered email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
@@ -565,7 +565,7 @@ def user_update_protocol():
 def user_register_process(email):
     clear()
     try:
-        caller("REGISTRATION PAGE")
+        call_the_name("REGISTRATION PAGE")
         user_email = email
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
@@ -618,7 +618,7 @@ def user_register_process(email):
 def user_register_protocol():
     clear()
     try:
-        caller("REGISTRATION AUTH PROTOCOL")
+        call_the_name("REGISTRATION AUTH PROTOCOL")
         print("We will send otp to the email you provide below so make sure you enter valid email id.")
         user_email_id = input("Please type your email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
@@ -647,7 +647,7 @@ def user_register_protocol():
 def user_delete_process(user_email):
     clear()
     try:
-        caller("DELETE CONFORMATION FROM USER")
+        call_the_name("DELETE CONFORMATION FROM USER")
         print(
             f"""
             Make sure this will delete all accounts associated with your email id.
@@ -692,7 +692,7 @@ def user_delete_process(user_email):
 def user_delete_protocol():
     clear()
     try:
-        caller("EMAIL VERIFICATION PAGE")
+        call_the_name("EMAIL VERIFICATION PAGE")
 
         print("We will send otp to the email you provide below so make sure you enter valid email id.")
         user_email_id = input(
@@ -728,7 +728,7 @@ def user_delete_protocol():
 def choices_main_interface():
     clear()
     try:
-        caller("USER ACCOUNT INTERFACE")
+        call_the_name("USER ACCOUNT INTERFACE")
         print(
             """
         1. Deposit
@@ -776,7 +776,7 @@ def choices_main_interface_director():
 
 def choice_deposit():
     clear()
-    caller("MONEY DEPOSIT PAGE")
+    call_the_name("MONEY DEPOSIT PAGE")
     try:
         bank_id = int(input("Please enter bank account id: "))
         bank_password = input("Please enter bank password: ")
@@ -821,7 +821,7 @@ def choice_deposit():
 def choice_withdraw_processor():
     clear()
     try:
-        caller("MONEY WITHDRAW PAGE ")
+        call_the_name("MONEY WITHDRAW PAGE ")
         bank_id = input("Please enter your user bank id: ")
         user_password = int(input("Please type your password: "))
 
@@ -873,7 +873,7 @@ def choice_withdraw_processor():
 
 def choice_withdraw_protocol():
     clear()
-    caller("WITHDRAW AUTH PAGE")
+    call_the_name("WITHDRAW AUTH PAGE")
     try:
         print("We will send otp to the email you provide below so make sure you enter valid email id.")
         user_email_id = input(
@@ -904,7 +904,7 @@ def choice_withdraw_protocol():
 def choice_transfer_processor():
     clear()
     try:
-        caller("TRANSFER PROTOCOL PAGE")
+        call_the_name("TRANSFER PROTOCOL PAGE")
         user_bank_id = int(
             input("Enter your user bank id from which you want to transfer money: "))
         user_get_bank_id = int(
@@ -953,7 +953,7 @@ def choice_transfer_processor():
 
 def choice_transfer_protocol():
     clear()
-    caller("TRANSFER PAGE AUTHENTICATION")
+    call_the_name("TRANSFER PAGE AUTHENTICATION")
     try:
         print("We will send otp to the email you provide below so make sure you enter valid email id.")
         user_email_id = input(
@@ -984,7 +984,7 @@ def choice_transfer_protocol():
 def account_main_interface():
     clear()
     try:
-        caller("USER ACCOUNT INTERFACE")
+        call_the_name("USER ACCOUNT INTERFACE")
         print(
             """
         1. Login
@@ -1031,7 +1031,7 @@ def account_main_interface_director():
 def user_account_delete():
     clear()
     try:
-        caller("USER ACCOUNT DELETE")
+        call_the_name("USER ACCOUNT DELETE")
         user_email = input("Please type your registered email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
@@ -1089,7 +1089,7 @@ def user_account_delete():
 def account_user_login():
     clear()
     try:
-        caller("USER LOGIN PAGE")
+        call_the_name("USER LOGIN PAGE")
         user_email = input("Please type your registered email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
@@ -1133,7 +1133,7 @@ def account_user_login():
 def account_user_register_process(user_email):
     clear()
     try:
-        caller("USER REGISTRATION PAGE")
+        call_the_name("USER REGISTRATION PAGE")
         print("=" * 50)
         print("\t  A C C O U N T  R E G I S T E R  I N T E R F A C E")
         print("=" * 50)
@@ -1175,7 +1175,7 @@ def account_user_register_process(user_email):
 def account_user_register():
     clear()
     try:
-        caller("USER ACCOUNT AUTH PAGE")
+        call_the_name("USER ACCOUNT AUTH PAGE")
         print("We will send otp to the email you provide below so make sure you enter valid email id.")
         user_email_id = input("Please type your email address: ")
         user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
@@ -1207,7 +1207,7 @@ def account_user_register():
 def admin_main_interface():
     clear()
     try:
-        caller("ADMIN INTERFACE PAGE")
+        call_the_name("ADMIN INTERFACE PAGE")
         print(
             """
         1. Login
@@ -1258,7 +1258,7 @@ def admin_main_interface_director():
 def admin_login():
     clear()
     try:
-        caller("ADMIN LOGIN PAGE")
+        call_the_name("ADMIN LOGIN PAGE")
         admin_id = int(input("Please enter admin id : "))
         admin_email = input("Please type your registered email address: ")
         admin_password = int(input("Please type your password: "))
@@ -1290,7 +1290,7 @@ def admin_login():
 def admin_register():
     clear()
     try:
-        caller("ADMIN REGISTRATION PAGE")
+        call_the_name("ADMIN REGISTRATION PAGE")
         admin_name = input("Please enter your name: ")
         admin_email = input("Please type your email address: ")
         admin_password = int(input("Please type your password: "))
@@ -1322,7 +1322,7 @@ def admin_register():
 def admin_delete():
     clear()
     try:
-        caller("ADMIN DELETION PAGE")
+        call_the_name("ADMIN DELETION PAGE")
         admin_to_delete_id = int(input("Please enter admin id : "))
         admin_email = input("Please type your registered email address: ")
         admin_password = int(input("Please type your password: "))
@@ -1360,7 +1360,7 @@ def admin_delete():
 def admin_choicer():
     clear()
     try:
-        caller("ADMIN CHOICES PAGE")
+        call_the_name("ADMIN CHOICES PAGE")
         print(
             """
         1. Daily Report
@@ -1409,13 +1409,13 @@ def timewise_report():
                       "TASK PERFORMED", "TIMESTAMP"]
             if set_to[0] == "Daily Report":
                 clear()
-                caller(set_to[0])
+                call_the_name(set_to[0])
                 query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set_to[1]}'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
             elif set_to[0] in ["Monthly Report", "Yearly Report"]:
                 clear()
-                caller(set_to[0])
+                call_the_name(set_to[0])
                 query = f"SELECT * FROM LOGS WHERE TIMESTAMP LIKE '%{set_to[1]}%'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
@@ -1423,13 +1423,13 @@ def timewise_report():
                                "Money Received Report", "Registered Accounts Information", "Login Accounts Information",
                                "Deleted Accounts Information"]:
                 clear()
-                caller(set_to[0])
+                call_the_name(set_to[0])
                 query = f"SELECT * FROM LOGS WHERE TASK_PERFORMED LIKE '%{set_to[1]}%'"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
             elif set_to[0] == "All Logs":
                 clear()
-                caller(set_to[0])
+                call_the_name(set_to[0])
                 query = f"SELECT * FROM LOGS"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
@@ -1465,7 +1465,7 @@ def timewise_report():
                 if timestamp == "all" and taskPerformed == "all":
                     query = f"SELECT * FROM LOGS WHERE USER_BANK_ID={user_id} AND USER_ACCOUNT_ID={bank_id}"
                 extracted_data = sql_query(query, "extract")
-                caller("ADMIN SPECIFIC REPORT")
+                call_the_name("ADMIN SPECIFIC REPORT")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
 
             enter = input("Q to quit  Enter to continue: ").casefold()
