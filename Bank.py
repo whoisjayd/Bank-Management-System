@@ -1587,4 +1587,4 @@ def timewise_report():
         raise_error(timewise_report)
 
 
-timewise_report()
+welcome()
