@@ -2,7 +2,7 @@
 **Created By Jaydeep Solanki of Class 12**
 # Work To Do
 `
-1: Change The Email And Password in Secrets.py. Name of file is case sensitive so make sure you do it correctly.`
+1: Change The Email And Password in secrets.py. Name of file is case sensitive so make sure you do it correctly.`
 
 
 # Instructions
