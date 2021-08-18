@@ -1551,14 +1551,14 @@ def timewise_report():
                     9. LOGIN
                     10. All
             (Take care of whitespace while typing)
-            Write sentence not number given in-front of it ===>""").capitalize()
+            Write sentence not number given in-front of it ===>""").upper()
                 print("You can only specify month or year or day ")
                 print("""Like for:-
                 day--> /1
                 month--> /12/
                 year--> 2021/""")
                 timestamp = input(
-                    "Enter the timestamp [Press enter to use today's timestamp or to get all type 'all' ] :").upper()
+                    "Enter the timestamp [Press enter to use today's timestamp or to get all type 'all' ] :").casefold()
                 query = f"SELECT * FROM LOGS WHERE USER_BANK_ID={user_id} AND USER_ACCOUNT_ID={bank_id} AND TASK_PERFORMED='{taskPerformed}' AND TIMESTAMP LIKE '%{timestamp}%'"
                 if taskPerformed == "ALL":
                     query = f"SELECT * FROM LOGS WHERE USER_BANK_ID={user_id} AND USER_ACCOUNT_ID={bank_id} AND TIMESTAMP LIKE '%{timestamp}%'"
