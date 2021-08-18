@@ -1159,7 +1159,7 @@ def account_user_register_process(user_email):
         print("Redirecting to your user choices page.")
         sleep(5)
         log_the_task(auth_selection_execute[0][0], user_bank_id, "User", user_email, user_start_bal, user_start_bal,
-                     f"BANK ACCOUNT CREATED SUCCESSFULLY")
+                     f"BANK ACCOUNT REGISTERED SUCCESSFULLY")
         choices_main_interface_director()
     except Exception as error:
         clear()
@@ -1400,8 +1400,8 @@ def timewise_report():
                   "3": ["Yearly Report", datetime.now().strftime(' %Y/')], "4": ["Money Deposit Report", "Deposited"],
                   "5": ["Money Withdraw Report", "Money Withdrawn"],
                   "6": ["Money Transfer Report", "Transferred money"], "7": ["Money Received Report", "Got money"],
-                  "8": ["Registered Accounts Information", "registered "],
-                  "9": ["Login Accounts Information", "Logged"], "10": ["Deleted Accounts Information", "Deleted"],
+                  "8": ["Registered Accounts Information", "REGISTERED "],
+                  "9": ["Login Accounts Information", "LOGIN"], "10": ["Deleted Accounts Information", "DELETED"],
                   "11": ["All Logs"], "12": ["Specify Report"]}
             set_to = to[str(perform)]
 
@@ -1481,4 +1481,12 @@ def timewise_report():
         raise_error(timewise_report)
 
 
+"""UPDATED
+DEPOSITED
+WITHDRAWN
+TRANSFERRED
+RECEIVED
+REGISTERED
+DELETED
+LOGIN"""
 welcome()
