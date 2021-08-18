@@ -173,14 +173,16 @@ def sql_query(query, function, password="", dbname="bank"):
         elif function == "extract":
             cursor.execute(query)
             return cursor.fetchall()
-    except Exception as error:
+    except:
 
         clear()
         print("Error in sql_query")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
 
 
 def message_content_send(email, r_name, r_email, main_otp):
@@ -232,13 +234,16 @@ def email_verification(receiver_email, receiver_name):
             smtp.login(sender_email, sender_email_password)
             smtp.send_message(msg)
         return otp_is
-    except Exception as error:
+    except:
         clear()
         print("Error in email_verification")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(interface_director)
 
@@ -268,13 +273,16 @@ def interface_director():
             user_main_interface_director()
         elif login == "2":
             admin_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in interface_director")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(interface_director)
 
@@ -295,13 +303,16 @@ def user_main_interface():
         5. Quit""")
         print("_" * 30)
         return input("""Choice [1 or 2 or 3 or 4 or 5] : """)
-    except Exception as error:
+    except:
         clear()
         print("Error in user_main_interface")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_main_interface_director)
 
@@ -321,13 +332,16 @@ def user_main_interface_director():
         elif user_inter == "5":
             clear()
             interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_main_interface_director")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_main_interface_director)
 
@@ -364,13 +378,16 @@ def user_login_protocol():
             else:
                 print("Invalid Credentials")
                 user_login_protocol()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_login_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_login_protocol)
 
@@ -392,13 +409,16 @@ def user_update_process_start_choices():
         print("Please give in format of 1,2,3,4,5,6")
 
         return input("Please enter you choices: ").split(",")
-    except Exception as error:
+    except:
         clear()
         print("Error in user_update_process_start_choices")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_update_process_start)
 
@@ -411,13 +431,15 @@ def convertor_list_to_sql_string(changes_to_made):
             if i < len(changes_to_made) - 1:
                 converted += ","
         return converted
-    except Exception as error:
+    except:
         clear()
         print("Error in convertor_list_to_sql_string")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
 
 
 def user_update_process_start():
@@ -486,13 +508,16 @@ def user_update_process_start():
             list_of_changes.remove("7")
 
         return convertor_list_to_sql_string(change)
-    except Exception as error:
+    except:
         clear()
         print("Error in user_update_process_start")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_update_process_start)
 
@@ -524,13 +549,15 @@ def user_update_process(user_email_id):
             sleep(4)
             clear()
             user_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_update_process")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
 
 
 def user_update_protocol():
@@ -551,13 +578,16 @@ def user_update_protocol():
         else:
             sending_otp_to_user(
                 user_email, user_update_process, True)
-    except Exception as error:
+    except:
         clear()
         print("Error in user_update_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_update_protocol)
 
@@ -604,13 +634,16 @@ def user_register_process(email):
         log_the_task(auth_selection_execute[0][0], 0, user_name, user_email, 0, 0, f"USER REGISTRATION SUCCESSFULLY")
         sleep(5)
         account_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_register_process")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_register_process)
 
@@ -633,13 +666,16 @@ def user_register_protocol():
         else:
             sending_otp_to_user(
                 user_email_id, user_register_process, True)
-    except Exception as error:
+    except:
         clear()
         print("Error in user_register_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_register_protocol)
 
@@ -678,13 +714,16 @@ def user_delete_process(user_email):
 
         else:
             user_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_delete_process")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_delete_process)
 
@@ -709,13 +748,16 @@ def user_delete_protocol():
         else:
             sending_otp_to_user(
                 user_email_id, user_delete_process, True)
-    except Exception as error:
+    except:
         clear()
         print("Error in user_delete_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_delete_protocol)
 
@@ -739,13 +781,16 @@ def choices_main_interface():
         print("_" * 30)
         return input("""Choice [1 or 2 or 3 or 4 or 5] : """)
 
-    except Exception as error:
+    except:
         clear()
         print("Error in choices_main_interface")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choices_main_interface_director)
 
@@ -763,13 +808,16 @@ def choices_main_interface_director():
         elif user_acc_inter == "4":
             clear()
             account_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in choices_main_interface_director")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choices_main_interface_director)
 
@@ -807,13 +855,16 @@ def choice_deposit():
             sleep(5)
             clear()
             choices_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in choice_deposit")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choice_deposit)
 
@@ -860,13 +911,16 @@ def choice_withdraw_processor():
             sleep(5)
             clear()
             choices_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in choice_withdraw_processor")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choice_withdraw_processor)
 
@@ -890,13 +944,16 @@ def choice_withdraw_protocol():
         else:
             sending_otp_to_user(
                 user_email_id, choice_withdraw_processor, False)
-    except Exception as error:
+    except:
         clear()
         print("Error in choice_withdraw_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choice_withdraw_protocol)
 
@@ -940,13 +997,16 @@ def choice_transfer_processor():
         else:
             print("Invalid Credentials or Insufficient balance..")
             choice_transfer_processor()
-    except Exception as error:
+    except:
         clear()
         print("Error in choice_transfer_processor")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choice_transfer_processor)
 
@@ -970,13 +1030,16 @@ def choice_transfer_protocol():
         else:
             sending_otp_to_user(
                 user_email_id, choice_transfer_processor, False)
-    except Exception as error:
+    except:
         clear()
         print("Error in choice_transfer_protocol")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(choice_transfer_protocol)
 
@@ -993,13 +1056,16 @@ def account_main_interface():
         4. Quit""")
         print("_" * 30)
         return input("""Choice [1 or 2 or 3 or 4] : """)
-    except Exception as error:
+    except:
         clear()
         print("Error in account_main_interface")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(account_main_interface_director)
 
@@ -1017,13 +1083,16 @@ def account_main_interface_director():
         elif user_acc_inter == "4":
             clear()
             interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in account_main_interface_director")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(account_main_interface_director)
 
@@ -1075,13 +1144,16 @@ def user_account_delete():
                     user_account_delete()
             else:
                 account_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in user_account_delete")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(user_account_delete)
 
@@ -1119,13 +1191,16 @@ def account_user_login():
             else:
                 print("Invalid Credentials")
                 account_user_login()
-    except Exception as error:
+    except:
         clear()
         print("Error in account_user_login")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(account_user_login)
 
@@ -1161,13 +1236,16 @@ def account_user_register_process(user_email):
         log_the_task(auth_selection_execute[0][0], user_bank_id, "User", user_email, user_start_bal, user_start_bal,
                      f"BANK ACCOUNT REGISTERED SUCCESSFULLY")
         choices_main_interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in account_user_register_process")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(account_user_register_process)
 
@@ -1190,13 +1268,16 @@ def account_user_register():
         else:
             sending_otp_to_user(
                 user_email_id, account_user_register_process, True)
-    except Exception as error:
+    except:
         clear()
         print("Error in account_user_register")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(account_user_register)
 
@@ -1216,13 +1297,16 @@ def admin_main_interface():
         4. Quit""")
         print("_" * 30)
         return input("""Choice [1 or 2 or 3 or 4] : """)
-    except Exception as error:
+    except:
         clear()
         print("Error in admin_main_interface")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(admin_main_interface_director)
 
@@ -1244,13 +1328,16 @@ def admin_main_interface_director():
         elif admin_inter == "4":
             clear()
             interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in admin_main_interface_director")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(admin_main_interface_director)
 
@@ -1276,13 +1363,16 @@ def admin_login():
         else:
             print("Invalid Credentials")
             admin_login()
-    except Exception as error:
+    except:
         clear()
         print("Error in admin_login")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(admin_login)
 
@@ -1308,13 +1398,16 @@ def admin_register():
         timewise_report()
         log_the_task(auth_selection_execute, 0, f"ADMIN {admin_name}", admin_email, 0, 0,
                      f"ADMIN REGISTERED SUCCESSFULLY")
-    except Exception as error:
+    except:
         clear()
         print("Error in admin_register")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(admin_register)
 
@@ -1343,13 +1436,16 @@ def admin_delete():
         else:
             print("Invalid Credentials")
             admin_delete()
-    except Exception as error:
+    except:
         clear()
         print("Error in admin_delete")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(admin_delete)
 
@@ -1375,15 +1471,19 @@ def admin_choicer():
         10. Deleted Accounts Information
         11. All Logs
         12. Specify Report
+        13. Details Updated
         """)
-        return input("\tEnter your choice 1 to 11 : ")
-    except Exception as error:
+        return input("\tEnter your choice 1 to 13 : ")
+    except:
         clear()
         print("Error in admin_choicer")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+Exception Type:{exc_type}
+File Name:{file_name}
+Error Occurred Line Number: {exc_tb.tb_lineno}""")
+
         sleep(5)
         raise_error(timewise_report)
 
@@ -1391,21 +1491,24 @@ def admin_choicer():
 def timewise_report():
     clear()
     try:
-
         enter = ""
         while enter != "q":
             perform = admin_choicer()
             to = {"1": ["Daily Report", datetime.now().strftime('%d')],
                   "2": ["Monthly Report", datetime.now().strftime('/%m/')],
-                  "3": ["Yearly Report", datetime.now().strftime(' %Y/')], "4": ["Money Deposit Report", "Deposited"],
-                  "5": ["Money Withdraw Report", "Money Withdrawn"],
-                  "6": ["Money Transfer Report", "Transferred money"], "7": ["Money Received Report", "Got money"],
+                  "3": ["Yearly Report", datetime.now().strftime(' %Y/')],
+                  "4": ["Money Deposit Report", "DEPOSITED"],
+                  "5": ["Money Withdraw Report", "WITHDRAWN"],
+                  "6": ["Money Transfer Report", "TRANSFERRED"],
+                  "7": ["Money Received Report", "RECEIVED"],
                   "8": ["Registered Accounts Information", "REGISTERED "],
-                  "9": ["Login Accounts Information", "LOGIN"], "10": ["Deleted Accounts Information", "DELETED"],
-                  "11": ["All Logs"], "12": ["Specify Report"]}
+                  "9": ["Login Accounts Information", "LOGIN"],
+                  "10": ["Deleted Accounts Information", "DELETED"],
+                  "11": ["All Logs"],
+                  "12": ["Specify Report"],
+                  "13": ["Details Updated", "UPDATED"]}
             set_to = to[str(perform)]
-
-            header = ["SR NO:", "BANK ID", "ACCOUNT ID", "EMAIL ID", "PREVIOUS BALANCE", "UPDATED BALANCE",
+            header = ["SR NO:", "BANK ID", "ACCOUNT ID", "User Name", "EMAIL ID", "PREVIOUS BALANCE", "UPDATED BALANCE",
                       "TASK PERFORMED", "TIMESTAMP"]
             if set_to[0] == "Daily Report":
                 clear()
@@ -1421,7 +1524,7 @@ def timewise_report():
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
             elif set_to[0] in ["Money Deposit Report", "Money Withdraw Report", "Money Transfer Report",
                                "Money Received Report", "Registered Accounts Information", "Login Accounts Information",
-                               "Deleted Accounts Information"]:
+                               "Deleted Accounts Information", "Details Updated"]:
                 clear()
                 call_the_name(set_to[0])
                 query = f"SELECT * FROM LOGS WHERE TASK_PERFORMED LIKE '%{set_to[1]}%'"
@@ -1438,14 +1541,15 @@ def timewise_report():
                 bank_id = input("Which bank you want to fetch of the user id mentioned above specify it's Bank Id'")
                 taskPerformed = input(
                     """Which Task you want to fetch
-                    1. Update
-                    2. Bank Delete
-                    3. Login
-                    4. Money Deposited
-                    5. Money Transferred
-                    6. Money Received
-                    7. Money Withdrawn
-                    8. All
+                    1. UPDATED
+                    2. DEPOSITED
+                    3. WITHDRAWN
+                    4. TRANSFERRED
+                    5. RECEIVED
+                    6. REGISTERED
+                    8. DELETED
+                    9. LOGIN
+                    10. All
             (Take care of whitespace while typing)
             Write sentence not number given in-front of it ===>""").casefold()
                 print("You can only specify month or year or day ")
@@ -1470,23 +1574,17 @@ def timewise_report():
 
             enter = input("Q to quit  Enter to continue: ").casefold()
         interface_director()
-    except Exception as error:
+    except:
         clear()
         print("Error in timewise_report")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, file_name, exc_tb.tb_lineno)
-        print("Error", error)
+        print(f"""
+        Exception Type:{exc_type}
+        File Name:{file_name}
+        Error Occurred Line Number: {exc_tb.tb_lineno}""")
         sleep(5)
         raise_error(timewise_report)
 
 
-"""UPDATED
-DEPOSITED
-WITHDRAWN
-TRANSFERRED
-RECEIVED
-REGISTERED
-DELETED
-LOGIN"""
-welcome()
+timewise_report()
