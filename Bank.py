@@ -41,7 +41,7 @@ except Exception as e:
 
 def log_the_task(USER_BANK_ID, USER_ACCOUNT_ID, NAME, EMAIL, PREV_AMOUNT, NEW_BAL, TASK_PERFORMED,
                  TIMESTAMP=datetime.now().strftime('%I:%M:%S %p  %Y/%m/%d')):
-    query_execute = f"INSERT INTO LOGS USER_BANK_ID,USER_ACCOUNT_ID,NAME,EMAIL,PREV_AMOUNT,NEW_BAL,TASK_PERFORMED,TIMESTAMP VALUES('{USER_BANK_ID}','{USER_ACCOUNT_ID}','{NAME}','{EMAIL}','{PREV_AMOUNT}','{NEW_BAL}','{TASK_PERFORMED}','{TIMESTAMP}')"
+    query_execute = f"INSERT INTO LOGS (USER_BANK_ID,USER_ACCOUNT_ID,NAME,EMAIL,PREV_AMOUNT,NEW_BAL,TASK_PERFORMED,TIMESTAMP) VALUES('{USER_BANK_ID}','{USER_ACCOUNT_ID}','{NAME}','{EMAIL}','{PREV_AMOUNT}','{NEW_BAL}','{TASK_PERFORMED}','{TIMESTAMP}')"
     sql_query(query_execute, "execute")
 
 
@@ -173,9 +173,10 @@ def sql_query(query, function, password="", dbname="bank"):
         elif function == "extract":
             cursor.execute(query)
             return cursor.fetchall()
-    except:
+    except Exception as error:
 
         clear()
+        print(error)
         print("Error in sql_query")
         exc_type, exc_obj, exc_tb = sys.exc_info()
         file_name = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -1587,4 +1588,4 @@ def timewise_report():
         raise_error(timewise_report)
 
 
-welcome()
+user_main_interface_director()
