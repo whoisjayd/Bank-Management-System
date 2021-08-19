@@ -1163,7 +1163,7 @@ def account_user_login():
     try:
         call_the_name("USER LOGIN PAGE")
         user_email = input("Please type your registered email address: ")
-        user_email_fetch_query = "SELECT EMAIL_ID FROM USERS"
+        user_email_fetch_query = "SELECT EMAIL_ID FROM ACCOUNT_DETAILS"
         user_email_fetch = sql_query(user_email_fetch_query, "extract")
         user_email_fetch_list = [i[0] for i in user_email_fetch]
 
