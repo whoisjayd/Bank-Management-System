@@ -1588,4 +1588,4 @@ def timewise_report():
         raise_error(timewise_report)
 
 
-admin_main_interface_director()
+welcome()
