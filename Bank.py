@@ -1538,8 +1538,8 @@ def timewise_report():
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
             elif set_to[0] == "Specify Report":
-                user_id = input("Which user you want to fetch specify it's User ID :")
-                bank_id = input("Which bank you want to fetch of the user id mentioned above specify it's Bank Id'")
+                user_id = input("Which user you want to fetch specify it's:  User ID --> ")
+                bank_id = input("Which bank you want to fetch of the user id mentioned above specify it's :  Bank Id  -->  ")
                 taskPerformed = input(
                     """Which Task you want to fetch
                     1. UPDATED
@@ -1588,4 +1588,4 @@ def timewise_report():
         raise_error(timewise_report)
 
 
-user_main_interface_director()
+admin_main_interface_director()
