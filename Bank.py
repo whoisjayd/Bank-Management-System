@@ -1588,5 +1588,5 @@ def timewise_report():
         raise_error(timewise_report)
 
 
-os.startfile('C:\wamp64\wampmanager')
+os.startfile('C:\wamp64\wampmanager.exe')
 welcome()
