@@ -11,7 +11,7 @@
 
                 Suggested IDE : Pycharm or Python IDLE
 
-3. Please change font size in Python IDLE to 7 if you are using it,fir better experience.
+3. Please change font size in Python IDLE to 7 if you are using it,for better experience.
                    > Open IDLE
                    > Click Options
                    > Click Configure IDLE
