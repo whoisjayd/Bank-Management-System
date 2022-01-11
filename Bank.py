@@ -219,6 +219,11 @@ def email_verification(receiver_email, receiver_name):
     try:
         sender_email = secrets.email()
         sender_email_password = secrets.email_password()
+        if sender_email=="ENTER YOUR EMAIL ID FROM WHICH YOU HAVE TO SEND EMAIL TO USER" or sender_email_password=="ENTER THE PASSWORD OF THE EMAIL ID MENTIONED ABOVE":
+            call_the_name("Invalid Email or Pass in 'secrets.py'") 
+            print("Please enter the valid email or password in 'secrets.py' for proper functioning !")
+            print("After entering details re run this program!")
+            
 
         def otp():
             main_otp = ""
