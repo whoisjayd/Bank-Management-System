@@ -92,14 +92,28 @@ def welcome():
                         > ADMINS
                         > LOGS""")
         sleep(8)
+    def credential_check():
+        sender_email = secrets.email()
+        sender_email_password = secrets.email_password()
+        if sender_email=="ENTER YOUR EMAIL ID FROM WHICH YOU HAVE TO SEND EMAIL TO USER" or sender_email_password=="ENTER THE PASSWORD OF THE EMAIL ID MENTIONED ABOVE" or "@gmail.com" not in sender_email:
+            call_the_name("Invalid Email or Pass in 'secrets.py'") 
+            print("Please enter the valid email or password in 'secrets.py' for proper functioning !")
+            print("After entering details re run this program!")
+            exit()
+        else:
+            pass
 
     call_the_name("WELCOME TO URMI BANKING ")
 
     print("You will find a file named 'secrets.py' ")
+
     print(
         "Open it and update that file to the credentials,Instructions and helpful links are shared in secrets.py  ...")
     print("\n" * 4)
     input("Press enter to move ahead...")
+    call_the_name("Checking Credentials !")
+    sleep(8)
+    credential_check()
     table_creation()
     sleep(2)
     print("\t\tCongratulations ! You are ready to go to use this program.")
@@ -217,14 +231,6 @@ def message_content_send(email, r_name, r_email, main_otp):
 
 def email_verification(receiver_email, receiver_name):
     try:
-        sender_email = secrets.email()
-        sender_email_password = secrets.email_password()
-        if sender_email=="ENTER YOUR EMAIL ID FROM WHICH YOU HAVE TO SEND EMAIL TO USER" or sender_email_password=="ENTER THE PASSWORD OF THE EMAIL ID MENTIONED ABOVE":
-            call_the_name("Invalid Email or Pass in 'secrets.py'") 
-            print("Please enter the valid email or password in 'secrets.py' for proper functioning !")
-            print("After entering details re run this program!")
-            
-
         def otp():
             main_otp = ""
             for _ in range(4):
