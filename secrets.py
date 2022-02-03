@@ -1,10 +1,11 @@
 """
 1. Allow Less secure app access in your google account from which you have to send email.
                         > Go to https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4Plwu-lxDuRfaAp_sMWewHvZ27O1MtZjJ9cXQJfFSUHKpCxGaQ3xqihupRn9Ae_CjS8i1cWG1LfJteHLrSgI4wyMlP_5Q
-                        > Login with the email that you have to used [It must be same that you have used in environment variable]
+                        > Login with the email that you have to used 
                         > Turn it on
+                        > Don't Worry It is safe :) 
 
-                    
+                    If you have enabled 2-Step Verification then pls refer the link given below 👇🏻
                     > Follow this link if your are facing issues : https://www.dev2qa.com/how-do-i-enable-less-secure-apps-on-gmail/#:~:text=1.%20Turn%20On%20Allow%20Less%20Secure%20Apps%20Access%20Google%20Account%20Steps
 
 2. Start your mysql server .
