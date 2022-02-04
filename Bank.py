@@ -72,13 +72,13 @@ def welcome():
         database_creation()
         sleep(2)
         print("\t\tCreating tables ..")
-        table_1 = """CREATE TABLE IF NOT EXISTS USERS(ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,NAME CHAR(20) NOT NULL,EMAIL_ID VARCHAR(40) NOT NULL UNIQUE,DOB VARCHAR(100) NOT NULL,PASSWORD INT(20) NOT NULL,PHONE_NUMBER BIGINT(255) NOT NULL,AADHAAR_NUMBER VARCHAR(50) NOT NULL UNIQUE,GENDER CHAR(20) NOT NULL,REGISTERED_TIMESTAMP VARCHAR(100) NOT NULL )"""
+        table_1 = """CREATE TABLE IF NOT EXISTS USERS(ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,NAME CHAR(50) NOT NULL,EMAIL_ID VARCHAR(50) NOT NULL UNIQUE,DOB VARCHAR(100) NOT NULL,PASSWORD INT(20) NOT NULL,PHONE_NUMBER BIGINT(255) NOT NULL,AADHAAR_NUMBER VARCHAR(50) NOT NULL UNIQUE,GENDER CHAR(20) NOT NULL,REGISTERED_TIMESTAMP VARCHAR(100) NOT NULL )"""
         sql_query(table_1, "execute")
-        table_2 = """CREATE TABLE IF NOT EXISTS ACCOUNT_DETAILS(TABLE_ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,ID INT(255) NOT NULL,EMAIL_ID VARCHAR(40) NOT NULL UNIQUE,PASSWORD INT(20) NOT NULL,ACCOUNT_BALANCE BIGINT(255) NOT NULL, ACCOUNT_TYPE CHAR(20) NOT NULL,ACCOUNT_REGISTERED_TIMESTAMP VARCHAR(100))"""
+        table_2 = """CREATE TABLE IF NOT EXISTS ACCOUNT_DETAILS(TABLE_ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,ID INT(255) NOT NULL,EMAIL_ID VARCHAR(50) NOT NULL UNIQUE,PASSWORD INT(20) NOT NULL,ACCOUNT_BALANCE BIGINT(255) NOT NULL, ACCOUNT_TYPE CHAR(20) NOT NULL,ACCOUNT_REGISTERED_TIMESTAMP VARCHAR(100))"""
         sql_query(table_2, "execute")
-        table_3 = """CREATE TABLE IF NOT EXISTS ADMINS(ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,NAME CHAR(20) NOT NULL,EMAIL VARCHAR(20) NOT NULL UNIQUE,PASSWORD INT(30) NOT NULL)"""
+        table_3 = """CREATE TABLE IF NOT EXISTS ADMINS(ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,NAME CHAR(50) NOT NULL,EMAIL VARCHAR(50) NOT NULL UNIQUE,PASSWORD INT(30) NOT NULL)"""
         sql_query(table_3, "execute")
-        table_4 = """CREATE TABLE IF NOT EXISTS LOGS(LOG_ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,USER_BANK_ID INT(255) NOT NULL,USER_ACCOUNT_ID INT(255) NOT NULL,NAME CHAR(20) NOT NULL,EMAIL VARCHAR(20) NOT NULL,PREV_AMOUNT INT(255) NOT NULL,NEW_BAL CHAR(255) DEFAULT 'NOT UPDATED',TASK_PERFORMED TINYTEXT NOT NULL,TIMESTAMP TINYTEXT NOT NULL)"""
+        table_4 = """CREATE TABLE IF NOT EXISTS LOGS(LOG_ID INT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,USER_BANK_ID INT(255) NOT NULL,USER_ACCOUNT_ID INT(255) NOT NULL,NAME CHAR(20) NOT NULL,EMAIL VARCHAR(50) NOT NULL,PREV_AMOUNT INT(255) NOT NULL,NEW_BAL CHAR(255) DEFAULT 'NOT UPDATED',TASK_PERFORMED TINYTEXT NOT NULL,TIMESTAMP TINYTEXT NOT NULL)"""
         sql_query(table_4, "execute")
         sleep(10)
         print("\t\tBoth Database Tables have been created..")
@@ -231,6 +231,8 @@ def message_content_send(email, r_name, r_email, main_otp):
 
 def email_verification(receiver_email, receiver_name):
     try:
+        sender_email = secrets.email()
+        sender_email_password = secrets.email_password()
         def otp():
             main_otp = ""
             for _ in range(4):
@@ -241,8 +243,9 @@ def email_verification(receiver_email, receiver_name):
         otp_is = otp()
         msg = message_content_send(
             sender_email, receiver_name, receiver_email, otp_is)
-
+        
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            
             smtp.login(sender_email, sender_email_password)
             smtp.send_message(msg)
         return otp_is
@@ -374,7 +377,7 @@ def user_login_protocol():
             user_main_interface_director()
         else:
             user_id = int(input("Please enter user id : "))
-            user_password = int(input("Please type your password: "))
+            user_password = int(input("Please type your password [must be number] : "))
             user_auth_query = f"SELECT EMAIL_ID,PASSWORD,NAME FROM USERS WHERE ID={user_id}"
             user_auth_execute = sql_query(user_auth_query, "extract")
             if user_auth_execute[0][0] == user_email and user_auth_execute[0][1] == user_password:
@@ -386,7 +389,7 @@ def user_login_protocol():
                 print("Redirecting to your user choices page .")
                 log_the_task(user_id, 0, user_auth_execute[0][2], user_email, 0, 0, f"USER LOGIN SUCCESSFULLY")
                 sleep(5)
-                account_main_interface_director()
+                choices_main_interface_director()
             else:
                 print("Invalid Credentials")
                 user_login_protocol()
@@ -484,7 +487,7 @@ def user_update_process_start():
             list_of_changes.remove("3")
 
         if str(dictionary[list_of_changes[0]]) == "PASSWORD":
-            user_password = int(input("Please type your new password: "))
+            user_password = int(input("Please type your new password[must be number] : "))
             while len(str(user_password)) < 4 or len(str(user_password)) > 18:
                 print("Range for password is 4-18 and that must be integer value.")
                 user_password = int(input("Please type your new password: "))
@@ -538,7 +541,7 @@ def user_update_process(user_email_id):
     clear()
     try:
         call_the_name("UPDATE AUTHENTICATION")
-        user_password = int(input("Please type your password: "))
+        user_password = int(input("Please type your password[must be number] : "))
         user_auth_query = f"SELECT PASSWORD,NAME,ID FROM USERS WHERE EMAIL_ID='{user_email_id}'"
         user_auth_execute = sql_query(user_auth_query, "extract")
         if user_auth_execute[0][0] == user_password:
@@ -620,7 +623,7 @@ def user_register_process(email):
             user_email_fetch_list = [i[0] for i in user_email_fetch]
         user_name = input("Please enter your name : ")
         user_dob = input("Please enter your Date of birth: ")
-        user_password = int(input("Please type your password: "))
+        user_password = int(input("Please type your password[must be number] : "))
         while len(str(user_password)) < 4 or len(str(user_password)) > 18:
             print("Range for password is 4-18 and that must be integer value.")
             user_password = int(input("Please type your password: "))
@@ -645,7 +648,7 @@ def user_register_process(email):
         print("Redirecting to your user choices page.")
         log_the_task(auth_selection_execute[0][0], 0, user_name, user_email, 0, 0, f"USER REGISTRATION SUCCESSFULLY")
         sleep(5)
-        account_main_interface_director()
+        choices_main_interface_director()
     except:
         clear()
         print("Error in user_register_process")
@@ -707,7 +710,7 @@ def user_delete_process(user_email):
         confirmation = input("Choice [1-2] : ")
         if confirmation == "1":
             user_bank_id = input("Please enter your user bank id: ")
-            user_password = int(input("Please type your password: "))
+            user_password = int(input("Please type your password[must be number] : "))
             user_auth_query = f"SELECT PASSWORD,NAME FROM USERS WHERE EMAIL_ID='{user_email}'"
             user_auth_execute = sql_query(user_auth_query, "extract")
             if user_auth_execute[0][0] == user_password:
@@ -886,7 +889,7 @@ def choice_withdraw_processor():
     try:
         call_the_name("MONEY WITHDRAW PAGE ")
         bank_id = input("Please enter your user bank id: ")
-        user_password = int(input("Please type your password: "))
+        user_password = int(input("Please type your password[must be number] : "))
 
         extract_query_perform = f"SELECT ID,PASSWORD,ACCOUNT_BALANCE,EMAIL_ID FROM ACCOUNT_DETAILS WHERE TABLE_ID={bank_id}"
         extract_query = sql_query(extract_query_perform, "extract")
@@ -1136,7 +1139,7 @@ def user_account_delete():
             if confirmation == 1:
                 print("Email Id : ", user_email)
                 user_id = int(input("Please enter bank id that you want to : "))
-                user_password = int(input("Please type bank password: "))
+                user_password = int(input("Please type bank password[must be number] : "))
                 user_auth_query = f"SELECT EMAIL_ID,PASSWORD,ID,ACCOUNT_BALANCE FROM ACCOUNT_DETAILS WHERE TABLE_ID={user_id}"
                 user_auth_execute = sql_query(user_auth_query, "extract")
                 if user_auth_execute[0][0] == user_email and user_auth_execute[0][1] == user_password:
@@ -1186,7 +1189,7 @@ def account_user_login():
             user_main_interface_director()
         else:
             user_id = int(input("Please enter bank id : "))
-            user_password = int(input("Please type bank password: "))
+            user_password = int(input("Please type bank password[must be number] : "))
             user_auth_query = f"SELECT EMAIL_ID,PASSWORD,ID,ACCOUNT_BALANCE FROM ACCOUNT_DETAILS WHERE TABLE_ID={user_id}"
             user_auth_execute = sql_query(user_auth_query, "extract")
             if user_auth_execute[0][0] == user_email and user_auth_execute[0][1] == user_password:
@@ -1224,7 +1227,7 @@ def account_user_register_process(user_email):
         print("=" * 50)
         print("\t  A C C O U N T  R E G I S T E R  I N T E R F A C E")
         print("=" * 50)
-        user_password = int(input("Please type your password: "))
+        user_password = int(input("Please type your password[must be number] : "))
         while len(str(user_password)) < 4 or len(str(user_password)) > 18:
             print("Range for password is 4-18 and that must be integer value.")
             user_password = int(input("Please type your password: "))
@@ -1360,7 +1363,7 @@ def admin_login():
         call_the_name("ADMIN LOGIN PAGE")
         admin_id = int(input("Please enter admin id : "))
         admin_email = input("Please type your registered email address: ")
-        admin_password = int(input("Please type your password: "))
+        admin_password = int(input("Please type your password[must be number] : "))
         auth_query = f"SELECT EMAIL,PASSWORD,NAME FROM ADMINS WHERE ID={admin_id}"
         auth_execute = sql_query(auth_query, "extract")
         if auth_execute[0][0] == admin_email and auth_execute[0][1] == admin_password:
@@ -1395,7 +1398,7 @@ def admin_register():
         call_the_name("ADMIN REGISTRATION PAGE")
         admin_name = input("Please enter your name: ")
         admin_email = input("Please type your email address: ")
-        admin_password = int(input("Please type your password: "))
+        admin_password = int(input("Please type your password[must be number] : "))
         auth_query = f"INSERT INTO ADMINS (NAME,EMAIL,PASSWORD) VALUES('{admin_name}','{admin_email}',{admin_password})"
         sql_query(auth_query, "execute")
         auth_selection_query = f"SELECT ID FROM ADMINS WHERE EMAIL='{admin_email}'"
@@ -1430,7 +1433,7 @@ def admin_delete():
         call_the_name("ADMIN DELETION PAGE")
         admin_to_delete_id = int(input("Please enter admin id : "))
         admin_email = input("Please type your registered email address: ")
-        admin_password = int(input("Please type your password: "))
+        admin_password = int(input("Please type your password[must be number] : "))
         auth_query = f"SELECT EMAIL,PASSWORD,NAME FROM ADMINS WHERE ID={admin_to_delete_id}"
         auth_execute = sql_query(auth_query, "extract")
         if auth_execute[0][0] == admin_email and auth_execute[0][1] == admin_password:
