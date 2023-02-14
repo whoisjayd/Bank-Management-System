@@ -49,7 +49,7 @@ def call_the_name(y):
     clear()
     a = "\t\t"
     for i in y:
-        a += i + " "
+        a += f"{i} "
     print("=" * (len(a) + 32))
     print(str(a).upper())
     print("=" * (len(a) + 32))
@@ -92,6 +92,7 @@ def welcome():
                         > ADMINS
                         > LOGS""")
         sleep(8)
+
     def credential_check():
         sender_email = secrets.email()
         sender_email_password = secrets.email_password()
@@ -100,8 +101,6 @@ def welcome():
             print("Please enter the valid email or password in 'secrets.py' for proper functioning !")
             print("After entering details re run this program!")
             exit()
-        else:
-            pass
 
     call_the_name("WELCOME TO URMI BANKING ")
 
@@ -387,7 +386,15 @@ def user_login_protocol():
                 clear()
                 print(f"Welcome {user_auth_execute[0][2]}")
                 print("Redirecting to your user choices page .")
-                log_the_task(user_id, 0, user_auth_execute[0][2], user_email, 0, 0, f"USER LOGIN SUCCESSFULLY")
+                log_the_task(
+                    user_id,
+                    0,
+                    user_auth_execute[0][2],
+                    user_email,
+                    0,
+                    0,
+                    "USER LOGIN SUCCESSFULLY",
+                )
                 sleep(5)
                 choices_main_interface_director()
             else:
@@ -461,29 +468,26 @@ def user_update_process_start():
     clear()
     try:
         call_the_name("UPDATE PROCEDURE")
-        change = []
         list_of_changes = user_update_process_start_choices()
         list_of_changes.append(" ")
         sleep(3)
         clear()
         dictionary = {"1": "NAME", "2": "EMAIL_ID", "3": " DOB", "4": "PASSWORD", "5": "PHONE_NUMBER",
                       "6": "AADHAAR_NUMBER", "7": "GENDER", " ": " "}
+        change = []
         if str(dictionary[list_of_changes[0]]) == "NAME":
             user_name = input("Please enter your new name : ")
-            change.append(
-                str(dictionary[list_of_changes[0]]) + "='" + str(user_name) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{str(user_name)}'")
             list_of_changes.remove("1")
 
         if str(dictionary[list_of_changes[0]]) == "EMAIL_ID":
             user_email = input("Please enter your new email: ")
-            change.append(
-                str(dictionary[list_of_changes[0]]) + "='" + str(user_email) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{str(user_email)}'")
             list_of_changes.remove("2")
 
         if str(dictionary[list_of_changes[0]]) == "DOB":
             user_dob = int(input("Please type your new Date of birth: "))
-            change.append(
-                str(dictionary[list_of_changes[0]]) + "='" + str(user_dob) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{user_dob}'")
             list_of_changes.remove("3")
 
         if str(dictionary[list_of_changes[0]]) == "PASSWORD":
@@ -491,9 +495,7 @@ def user_update_process_start():
             while len(str(user_password)) < 4 or len(str(user_password)) > 18:
                 print("Range for password is 4-18 and that must be integer value.")
                 user_password = int(input("Please type your new password: "))
-            change.append(
-                str(
-                    dictionary[list_of_changes[0]]) + "='" + str(user_password) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{user_password}'")
             list_of_changes.remove("4")
 
         if str(dictionary[list_of_changes[0]]) == "PHONE_NUMBER":
@@ -501,8 +503,7 @@ def user_update_process_start():
             while len(user_phone) != 10:
                 print("Please  enter valid phone number.")
                 user_phone = input("Please type your new phone number: ")
-            change.append(
-                str(dictionary[list_of_changes[0]]) + "='" + str(user_phone) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{str(user_phone)}'")
             list_of_changes.remove("5")
 
         if str(dictionary[list_of_changes[0]]) == "AADHAAR_NUMBER":
@@ -511,15 +512,12 @@ def user_update_process_start():
                 print(
                     "Please enter valid aadhaar.It should be in 'xxxx-xxxx-xxxx' format")
                 user_aadhaar = input("Please enter your new aadhaar number: ")
-            change.append(
-                str(
-                    dictionary[list_of_changes[0]]) + "='" + str(user_aadhaar) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{str(user_aadhaar)}'")
             list_of_changes.remove("6")
 
         if str(dictionary[list_of_changes[0]]) == "GENDER":
             user_gender = input("Please enter your gender: ")
-            change.append(
-                str(dictionary[list_of_changes[0]]) + "='" + str(user_gender) + "'")
+            change.append(f"{str(dictionary[list_of_changes[0]])}='{str(user_gender)}'")
             list_of_changes.remove("7")
 
         return convertor_list_to_sql_string(change)
@@ -557,8 +555,15 @@ def user_update_process(user_email_id):
             query_for_update = f"UPDATE USERS SET {change_is_given} WHERE EMAIL_ID='{user_email_id}'"
             sql_query(query_for_update, "execute")
             sleep(1)
-            log_the_task(user_auth_execute[0][2], 0, user_auth_execute[0][1], user_email_id, 0, 0,
-                         f"USER DETAILS UPDATED SUCCESSFULLY")
+            log_the_task(
+                user_auth_execute[0][2],
+                0,
+                user_auth_execute[0][1],
+                user_email_id,
+                0,
+                0,
+                "USER DETAILS UPDATED SUCCESSFULLY",
+            )
             print("Successfully updated your details.")
             print("Wait going to user choices.")
             sleep(4)
@@ -646,7 +651,15 @@ def user_register_process(email):
         print(f"Your user id is {auth_selection_execute[0][0]}")
         print("Remember this user id it will be used in the user confirmation.")
         print("Redirecting to your user choices page.")
-        log_the_task(auth_selection_execute[0][0], 0, user_name, user_email, 0, 0, f"USER REGISTRATION SUCCESSFULLY")
+        log_the_task(
+            auth_selection_execute[0][0],
+            0,
+            user_name,
+            user_email,
+            0,
+            0,
+            "USER REGISTRATION SUCCESSFULLY",
+        )
         sleep(5)
         choices_main_interface_director()
     except:
@@ -723,7 +736,15 @@ def user_delete_process(user_email):
                 sql_query(delete_query_from_bank, "execute")
                 print("Deleted all accounts associated with your email id...")
                 print("Logging you out...")
-                log_the_task(user_bank_id, 0, user_auth_execute[0][1], user_email, 0, 0, f"USER DELETED SUCCESSFULLY")
+                log_the_task(
+                    user_bank_id,
+                    0,
+                    user_auth_execute[0][1],
+                    user_email,
+                    0,
+                    0,
+                    "USER DELETED SUCCESSFULLY",
+                )
                 sleep(5)
                 interface_director()
 
@@ -848,13 +869,20 @@ def choice_deposit():
         if extract_query[0][2] > 5000 and str(extract_query[0][1]) == bank_password:
             dep_money = int(
                 input("Hi user please specify amount to deposit: "))
-            updated_bal = int(dep_money) + int(extract_query[0][2])
+            updated_bal = dep_money + int(extract_query[0][2])
             update_query = f"UPDATE ACCOUNT_DETAILS SET ACCOUNT_BALANCE='{updated_bal}' WHERE TABLE_ID={bank_id}"
             sql_query(update_query, "execute")
             sleep(5)
             clear()
-            log_the_task(extract_query_perform[0][0], bank_id, "User", extract_query_perform[0][3],
-                         extract_query[0][2], updated_bal, f"MONEY DEPOSITED SUCCESSFULLY")
+            log_the_task(
+                extract_query_perform[0][0],
+                bank_id,
+                "User",
+                extract_query_perform[0][3],
+                extract_query[0][2],
+                updated_bal,
+                "MONEY DEPOSITED SUCCESSFULLY",
+            )
             print(
                 f"Account balance of account having id {bank_id} successfully updated")
             print(
@@ -896,7 +924,7 @@ def choice_withdraw_processor():
         if extract_query[0][2] > 5000 and str(extract_query[0][1]) == str(user_password):
             with_money = int(
                 input("Hi user please specify amount to withdraw: "))
-            updated_bal = int(extract_query[0][2]) - int(with_money)
+            updated_bal = int(extract_query[0][2]) - with_money
             if updated_bal < 0 and updated_bal < 5000:
                 print("You have insufficient money to withdraw...")
                 print("Please deposit money to withdraw money..")
@@ -915,8 +943,15 @@ def choice_withdraw_processor():
                 print(
                     f"Earlier it was {extract_query[0][2]} , After withdrawing {with_money} you have {updated_bal} in your bank account.")
                 sleep(5)
-                log_the_task(extract_query_perform[0][0], bank_id, "User", extract_query_perform[0][3],
-                             extract_query[0][2], updated_bal, f"MONEY WITHDRAWN SUCCESSFULLY")
+                log_the_task(
+                    extract_query_perform[0][0],
+                    bank_id,
+                    "User",
+                    extract_query_perform[0][3],
+                    extract_query[0][2],
+                    updated_bal,
+                    "MONEY WITHDRAWN SUCCESSFULLY",
+                )
                 choices_main_interface_director()
         elif extract_query[0][2] < 5000 or str(extract_query[0][1]) != user_password:
             clear()
@@ -989,14 +1024,14 @@ def choice_transfer_processor():
         user_extracted_data = sql_query(user_query, "extract")
         user_get_query = f"SELECT ACCOUNT_BALANCE,EMAIL_ID,ID FROM ACCOUNT_DETAILS WHERE TABLE_ID={user_get_bank_id}"
         user_get_extracted_data = sql_query(user_get_query, "extract")
-        user_updated_bal = int(
-            user_extracted_data[0][1]) - int(amount_to_transfer)
-        user_get_updated_bal = int(
-            user_get_extracted_data[0][0]) + int(amount_to_transfer)
+        user_updated_bal = int(user_extracted_data[0][1]) - amount_to_transfer
         if str(user_extracted_data[0][0]) == str(user_password) and user_extracted_data[0][1] > 5000 and user_updated_bal > 2000:
             print(
                 f"Transferring money to  account having id {user_get_bank_id} from your account having id {user_bank_id}")
             user_update_query = f"UPDATE ACCOUNT_DETAILS SET ACCOUNT_BALANCE='{user_updated_bal}' WHERE TABLE_ID={user_bank_id}"
+            user_get_updated_bal = (
+                int(user_get_extracted_data[0][0]) + amount_to_transfer
+            )
             user_get_update_query = f"UPDATE ACCOUNT_DETAILS SET ACCOUNT_BALANCE='{user_get_updated_bal}' WHERE TABLE_ID={user_get_bank_id}"
             sql_query(user_update_query, "execute")
             sql_query(user_get_update_query, "execute")
@@ -1149,8 +1184,15 @@ def user_account_delete():
                     sql_query(delete_query, "execute")
                     print("Account deleted successfully.")
                     sleep(5)
-                    log_the_task(user_auth_execute[0][2], user_id, "User", user_auth_execute[0][0],
-                                 user_auth_execute[0][3], user_auth_execute[0][3], f"BANK ACCOUNT DELETED SUCCESSFULLY")
+                    log_the_task(
+                        user_auth_execute[0][2],
+                        user_id,
+                        "User",
+                        user_auth_execute[0][0],
+                        user_auth_execute[0][3],
+                        user_auth_execute[0][3],
+                        "BANK ACCOUNT DELETED SUCCESSFULLY",
+                    )
                     clear()
                     account_main_interface_director()
 
@@ -1194,14 +1236,20 @@ def account_user_login():
             user_auth_execute = sql_query(user_auth_query, "extract")
             if user_auth_execute[0][0] == user_email and user_auth_execute[0][1] == user_password:
                 clear()
-                print(
-                    f"Successfully logged in to bank account ")
+                print("Successfully logged in to bank account ")
                 sleep(2)
-                print(f"Welcome User !")
+                print("Welcome User !")
                 print("Redirecting to your user choices page .")
                 sleep(5)
-                log_the_task(user_auth_execute[0][2], user_id, "User", user_auth_execute[0][0], user_auth_execute[0][3],
-                             user_auth_execute[0][3], f"BANK ACCOUNT LOGIN IN SUCCESSFULLY")
+                log_the_task(
+                    user_auth_execute[0][2],
+                    user_id,
+                    "User",
+                    user_auth_execute[0][0],
+                    user_auth_execute[0][3],
+                    user_auth_execute[0][3],
+                    "BANK ACCOUNT LOGIN IN SUCCESSFULLY",
+                )
                 choices_main_interface_director()
             else:
                 print("Invalid Credentials")
@@ -1248,8 +1296,15 @@ def account_user_register_process(user_email):
         print("Remember this bank id it will be used in the bank account confirmation.")
         print("Redirecting to your user choices page.")
         sleep(5)
-        log_the_task(auth_selection_execute[0][0], user_bank_id, "User", user_email, user_start_bal, user_start_bal,
-                     f"BANK ACCOUNT REGISTERED SUCCESSFULLY")
+        log_the_task(
+            auth_selection_execute[0][0],
+            user_bank_id,
+            "User",
+            user_email,
+            user_start_bal,
+            user_start_bal,
+            "BANK ACCOUNT REGISTERED SUCCESSFULLY",
+        )
         choices_main_interface_director()
     except:
         clear()
@@ -1373,7 +1428,15 @@ def admin_login():
             print(f"Welcome {auth_execute[0][2]}")
             print("Redirecting to your admin choices page .")
             sleep(5)
-            log_the_task(admin_id, 0, f"ADMIN {auth_execute[0][2]}", admin_email, 0, 0, f"ADMIN LOGIN IN SUCCESSFULLY")
+            log_the_task(
+                admin_id,
+                0,
+                f"ADMIN {auth_execute[0][2]}",
+                admin_email,
+                0,
+                0,
+                "ADMIN LOGIN IN SUCCESSFULLY",
+            )
             timewise_report()
         else:
             print("Invalid Credentials")
@@ -1411,8 +1474,15 @@ def admin_register():
         print("Redirecting to your admin choices page.")
         sleep(5)  # Remember to add redirection to admin choices
         timewise_report()
-        log_the_task(auth_selection_execute, 0, f"ADMIN {admin_name}", admin_email, 0, 0,
-                     f"ADMIN REGISTERED SUCCESSFULLY")
+        log_the_task(
+            auth_selection_execute,
+            0,
+            f"ADMIN {admin_name}",
+            admin_email,
+            0,
+            0,
+            "ADMIN REGISTERED SUCCESSFULLY",
+        )
     except:
         clear()
         print("Error in admin_register")
@@ -1438,7 +1508,7 @@ def admin_delete():
         auth_execute = sql_query(auth_query, "extract")
         if auth_execute[0][0] == admin_email and auth_execute[0][1] == admin_password:
             clear()
-            print(f"Successfully delete admin having details:")
+            print("Successfully delete admin having details:")
             print(
                 f"""
             ID: {admin_to_delete_id}
@@ -1446,8 +1516,15 @@ def admin_delete():
             Name : {auth_execute[0][2]}""")
             sleep(7)
             interface_director()
-            log_the_task(admin_to_delete_id, 0, f"ADMIN {auth_execute[0][2]}", admin_email, 0, 0,
-                         f"ADMIN DELETED SUCCESSFULLY")
+            log_the_task(
+                admin_to_delete_id,
+                0,
+                f"ADMIN {auth_execute[0][2]}",
+                admin_email,
+                0,
+                0,
+                "ADMIN DELETED SUCCESSFULLY",
+            )
         else:
             print("Invalid Credentials")
             admin_delete()
@@ -1548,7 +1625,7 @@ def timewise_report():
             elif set_to[0] == "All Logs":
                 clear()
                 call_the_name(set_to[0])
-                query = f"SELECT * FROM LOGS"
+                query = "SELECT * FROM LOGS"
                 extracted_data = sql_query(query, "extract")
                 print(tabulate(extracted_data, header, tablefmt='fancy_grid'))
             elif set_to[0] == "Specify Report":
