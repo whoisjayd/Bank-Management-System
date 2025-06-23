@@ -26,7 +26,7 @@ This project is intended for educational purposes. Users are welcome to refer to
 For inquiries or permissions, please contact:
 
 - **Name**: Jaydeep Solanki
-- **Email**: jaydeep.solankee@yahoo.com
+- **Email**: contactjaydeepsolanki@gmail.com
 - **LinkedIn**: [Jaydeep Solanki on LinkedIn](https://www.linkedin.com/in/jaydeep-solanki-79ab61253/)
 
 Enjoy exploring! 😉
